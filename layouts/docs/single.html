@@ -50,14 +50,14 @@
                     <div class="post-series">
                         {{- $series := where .Site.RegularPages.ByDate ".Params.series" "intersect" .Params.series -}}
                         {{- with $series -}}
-                        <h3 id="series">This series</h3>
+                        <h3 id="series"><b>Post In This series</b></h3>
                         <ol>
                             {{- range . -}}
                             <li>
                                 {{- if eq .File.UniqueID $.File.UniqueID -}}
                                     <b>{{ .Title }}</b>
                                 {{- else -}}
-                                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                                    <u><a href="{{ .Permalink }}">{{ .Title }}</a></u>
                                 {{- end -}}
                             </li>
                             {{- end -}}
