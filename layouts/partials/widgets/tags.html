@@ -9,7 +9,7 @@
         <a href="{{ $.Site.BaseURL }}/tags/{{ $termName | urlize }}">
             <span
                 class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
-                {{ $termName }}
+                {{ $termName }} ({{ $entries.Count }})
             </span></a>
         {{- end }}
         {{- end }}

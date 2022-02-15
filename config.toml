@@ -1,6 +1,6 @@
 baseURL = "https://example.com"
-title = "Blonde"
-author = "wamo"
+title = "SQL-NOSQL"
+author = "Kiran Sabne"
 languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
@@ -22,7 +22,7 @@ enableRobotsTXT = true
 base_color = "bg-gray-800"
 
 #Site description
-description = "Blonde theme for Hugo."
+description = "My SQL and NoSQL related posts and notes"
 
 # The number of articles to be displayed on a single page.
 paginator_pages = "5"
@@ -33,13 +33,16 @@ archive_dropdown = "false"
 # Number of tags to be displayed.
 tagsLimit = 20
 
+# Number of categories to be displayed
+categoriesLimit = 10
+
 # Dark mode by default : dark
 # Light mode by default : light
-darkmode = "light"
+darkmode = "dark"
 
   [params.post]
     # Show thumbnails
-    thumbnail = true
+    thumbnail = false
 
     # Disable the "NO IMAGE" image.
     noimage = true
@@ -53,7 +56,7 @@ darkmode = "light"
     thumbnail_width = "lg:w-auto"
 
     # Number of characters in description
-    description = "130"
+    description = "150"
 
   [params.widgets]
     # Display widgets

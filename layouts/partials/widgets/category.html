@@ -1,4 +1,4 @@
-{{ if .Site.Taxonomies.categories }}
+<!-- {{ if .Site.Taxonomies.categories }}
 <div class="bg-white panel mb-3 pb-5 dark:bg-warmgray-900">
     <p class="text-xl text-center text-gray-700 py-5 dark:text-gray-300 font-bold">Categories</p>
     {{ range $key, $value := .Site.Taxonomies.categories }}
@@ -6,5 +6,25 @@
         href="{{ $.Site.BaseURL }}/categories/{{ $key | urlize  }}">{{ $key | humanize }}</a>
 
     {{ end }}
+</div>
+{{ end }} -->
+
+
+{{ if .Site.Taxonomies.categories }}
+<div class="bg-white panel mb-3 dark:bg-warmgray-900">
+    <p class="text-xl text-center text-gray-700 py-3 pl-3 dark:text-gray-300 font-bold">Categories</p>
+    <div class="panel-block p-2">
+        {{- $.Scratch.Set "myLimit" 0 }}
+        {{- range $termName, $entries := .Site.Taxonomies.categories }}
+        {{- $.Scratch.Set "myLimit" (add ($.Scratch.Get "myLimit") 1) }}
+        {{- if le ($.Scratch.Get "myLimit") ($.Site.Param `categoriesLimit`) }}
+        <a href="{{ $.Site.BaseURL }}/categories/{{ $termName | urlize }}">
+            <span
+                class="duration-100 inline-flex py-2 leading-4 mr-2 mb-2 content-center bg-gray-100 justify-center h-8 px-3 text-blue-500 hover:text-blue-900 dark:bg-warmgray-800">
+                {{ $termName }} ({{ $entries.Count }})
+            </span></a>
+        {{- end }}
+        {{- end }}
+    </div>
 </div>
 {{ end }}
