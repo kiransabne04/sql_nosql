@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{{ if eq .Site.Params.darkmode "dark" }}
+<html lang="{{ .Site.LanguageCode | default .Site.Language.Lang }}" class="dark">
+{{ else }}
+<html lang="{{ .Site.LanguageCode | default .Site.Language.Lang }}">
+{{ end }}
+{{- partial "head.html" . -}}
+
+<body class="font-sans">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-warmgray-800">
+        {{- partial "header.html" . -}}
+        <div class="container max-w-screen-xl mx-auto mt-4 flex-grow px-5 lg:px-0" id="content">
+            <div class="lg:mx-5">
+                <div class="grid grid-cols-3 gap-4">
+                    {{ if .Site.Params.widgets.display }}
+                    <div class="col-span-3 lg:col-span-2 mb-3">
+                    {{ else }}
+                    <div class="col-span-3 mb-3">
+                    {{ end }}
+                      <h2 class="text-4xl dark:text-white">{{if not .IsHome}}{{ humanize .Title }}{{end}}</h2>
+                      {{if .IsHome}}
+                      {{.Scratch.Set "Paginator" (.Paginate (where .Site.RegularPages "Type" "in" (slice "post" "docs")) (.Site.Params.paginator_pages) )}}
+                      {{else}}
+                      {{.Scratch.Set "Paginator" .Paginator}}
+                      {{end}}
+                      {{$paginator:=(.Scratch.Get "Paginator")}}
+                      {{ range $paginator.Pages }}
+                      <a href="{{.RelPermalink}}">
+                        {{ .Render "summary" }}
+                      </a>
+                      {{ end }}
+                      {{ partial "paginator.html" . }}
+                    </div>
+                    {{ if .Site.Params.widgets.display }}
+                    <div class="hidden lg:block lg:col-span-1">
+                        
+                        {{ partial "widgets/search.html" . }}
+                        {{ partial "widgets/series.html" . }}
+                        {{ partial "widgets/category.html" . }}
+                        {{ partial "widgets/tags.html" . }}
+                        {{ partial "widgets/recent.html" . }}
+                        {{ partial "widgets/archive.html" . }}
+                        
+                    </div>
+                    {{ end }}
+                  </div>
+            </div>
+        </div>
+        {{- partial "footer.html" . -}}
+    </div>
+</body>
+
+</html>
